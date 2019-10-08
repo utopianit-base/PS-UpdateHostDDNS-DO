@@ -30,6 +30,14 @@ Function ReadAPIKey
 $api_key = ReadAPIKey 
 #$api_key = {{ THIS IS MY PRIVATE DIGITALOCEAN API KEY HARDCODE IN }}
 
+if ($api_key -eq $null)
+{
+  Write-Host "ERROR: No API key set in api.txt file!" -foregroundcolor red
+  break
+}
+
+$header = @{"Authorization"="Bearer " + $api_key;"Content-Type"="application/json"}
+
 # Create a DNS record for the newly created domain
 Function CreateRecord ($data)
 {
@@ -76,6 +84,4 @@ Write-Host ""
 Write-Host "UpdateHostDDNS Using DO API v2 - PowerShell"
 Write-Host "==========================================="
 $newdomain = "yourdomainhere.com"
-UpdateHostDDNS -hostrecord utbr
-
-Exit
+UpdateHostDDNS -hostrecord home
