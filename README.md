@@ -7,7 +7,10 @@ You'll need to put in a DigitalOcean API key into the api.key text file which ca
 
 https://www.digitalocean.com/docs/api/create-personal-access-token/
 
-Next, within the main PS script, you'll need to update it with the domain and record that you want to update.
+Next, within the main PS script, you'll need to update it with the domain (yourdomainhere.com) and the record (home) that you want to update.
+
+$newdomain = "yourdomainhere.com"
+UpdateHostDDNS -hostrecord home
 
 The script will run, read the API key and check the current DNS record. If it's changed, it'll update it.
 
